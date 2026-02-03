@@ -153,16 +153,34 @@ function spawnEmoji() {
 }
 setInterval(spawnEmoji, 400);
 
-/* NO button logic */
+let scale = 1;
+
+/* NO button logic — funny + runaway + shrinking */
 noBtn.addEventListener("touchstart", () => {
+
+    // Funny response text
     if (noCount < noTexts.length) {
         question.innerText = noTexts[noCount];
         noCount++;
     } else {
         question.innerText = "I knew you’d say YES 😘";
         noBtn.style.display = "none";
+        return;
     }
+
+    // Random movement
+    const x = Math.random() * 70;
+    const y = Math.random() * 60;
+    noBtn.style.position = "fixed";
+    noBtn.style.left = x + "vw";
+    noBtn.style.top = y + "vh";
+
+    // Shrink effect
+    scale -= 0.12;
+    if (scale < 0.4) scale = 0.4; // minimum size
+    noBtn.style.transform = `scale(${scale})`;
 });
+
 
 /* YES button */
 yesBtn.addEventListener("touchstart", () => {
