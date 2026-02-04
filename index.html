@@ -6,7 +6,7 @@
   <title>For Muddamma ❤️</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
   <style>
     html, body {
@@ -163,19 +163,43 @@
       100% { transform: scale(1); }
     }
 
+    /* ---------- TYPEWRITER FINAL TEXT ---------- */
     #finalText {
       position: fixed;
       inset: 0;
       display: none;
       align-items: center;
       justify-content: center;
-      font-size: clamp(1.6rem, 5vw, 2.4rem);
-      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 7vw, 3.2rem);
+      font-family: 'Dancing Script', cursive;
+      font-weight: 700;
       text-align: center;
-      color: #fff;
-      text-shadow: 0 0 12px rgba(255,80,150,0.8);
+      color: #ff5fa2;
+      text-shadow: 0 0 20px #ff5fa2, 0 0 40px #ff9fc7;
       z-index: 40;
-      white-space: pre-wrap;
+      letter-spacing: 0.4em;
+      line-height: 1.2;
+    }
+
+    .typewriter-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 2.8em;
+      background: #ff5fa2;
+      animation: blink 1s infinite;
+      margin-left: 0.1em;
+      vertical-align: bottom;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .heartbeat-heart {
+      animation: heartbeat 1.2s infinite;
+      display: inline-block;
+      font-size: 1.2em;
     }
 
     #okBtn {
@@ -187,6 +211,8 @@
       background: #ff3b7f;
       color: #fff;
       z-index: 30;
+      padding: 16px 40px;
+      font-size: 1.2rem;
     }
   </style>
 </head>
@@ -322,10 +348,11 @@
       }, 2500);
     };
 
-    /* OK NOW */
+    /* OK NOW - TYPEWRITER EFFECT */
     document.getElementById("okBtn").onclick = function() {
       stopConfetti();
       this.disabled = true;
+      this.innerText = "❤️";
 
       const img = document.getElementById("slideImg");
       img.style.transition = "transform 6s, filter 6s";
@@ -334,17 +361,41 @@
 
       const text = document.getElementById("finalText");
       text.style.display = "flex";
-      const msg = "I   LOVE   YOU   MUDDU    HENDATHI  ❤️";
+      
+      // TYPEWRITER TEXT with spaces and heart
+      const typewriterText = "I   L O V E   Y O U   H E N D A T H I ❤️";
+      text.innerHTML = "";
+      
       let i = 0;
-      text.innerText = "";
-      const t = setInterval(()=>{
-        text.innerText += msg[i++];
-        if (i === msg.length) {
-          clearInterval(t);
-          // show the big final love block if you want
-          document.getElementById("finalLove").style.display = "block";
+      const typeInterval = setInterval(() => {
+        if (i < typewriterText.length) {
+          text.innerHTML += typewriterText[i++];
+          
+          // Blinking cursor effect
+          if (i < typewriterText.length) {
+            const cursor = document.createElement('span');
+            cursor.className = 'typewriter-cursor';
+            text.appendChild(cursor);
+            
+            setTimeout(() => {
+              if (cursor.parentNode) cursor.remove();
+            }, 100);
+          }
+        } else {
+          clearInterval(typeInterval);
+          
+          // Heartbeat animation for final heart
+          const hearts = text.querySelectorAll('❤️');
+          hearts.forEach(heart => {
+            heart.classList.add('heartbeat-heart');
+          });
+          
+          // Show backup final love text
+          setTimeout(() => {
+            document.getElementById("finalLove").style.display = "block";
+          }, 3000);
         }
-      }, 120);
+      }, 150); // Typing speed
     };
   </script>
 
