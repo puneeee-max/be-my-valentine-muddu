@@ -34,6 +34,14 @@ h1 {
   text-shadow: 0 0 20px #ff4d6d;
 }
 
+/* Buttons */
+#btnRow {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
 button {
   padding: 15px 32px;
   font-size: 1.2rem;
@@ -51,7 +59,6 @@ button {
 #noBtn {
   background: #444;
   color: white;
-  position: absolute;
 }
 
 @keyframes breathe {
@@ -61,21 +68,23 @@ button {
 }
 
 /* Fixed GIFs */
-.fixedGif {
-  width: 100px;
-}
-
 #gifTop {
-  margin-bottom: 5px;
+  width: 130px;
+  margin-bottom: 10px;
 }
 
 #gifBottom {
-  margin-top: 5px;
+  width: 140px;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
+/* Message */
 #message {
   margin-top: 20px;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-family: 'Playfair Display', serif;
 }
 
@@ -92,6 +101,7 @@ button {
   to { transform: translateY(-10vh); opacity: 0; }
 }
 
+/* Slideshow */
 #slideshow {
   display: none;
   margin-top: 30px;
@@ -112,9 +122,10 @@ button {
   color: white;
 }
 
+/* Final text */
 #finalText {
   display: none;
-  position: absolute;
+  position: fixed;
   inset: 0;
   display: flex;
   align-items: center;
@@ -122,6 +133,7 @@ button {
   font-family: 'Great Vibes', cursive;
   font-size: 4rem;
   text-shadow: 0 0 25px #ff4d6d;
+  pointer-events: none;
 }
 </style>
 </head>
@@ -132,17 +144,14 @@ button {
 
 <div id="container">
 
-  <!-- Fixed GIFs -->
-  <img id="gifTop" class="fixedGif" src="love1.gif">
-  <h1>Muddamma.!
-    Will you be my Valentine? 💖</h1>
+  <img id="gifTop" src="love1.gif">
 
-  <br><br>
+  <h1>Muddamma, will you be my Valentine? 💖</h1>
 
-  <button id="yesBtn">Yes 💘</button>
-  <button id="noBtn">No 🙈</button>
-
-   <img id="gifBottom" class="fixedGif" src="love2.gif">
+  <div id="btnRow">
+    <button id="yesBtn">Yes 💘</button>
+    <button id="noBtn">No 🙈</button>
+  </div>
 
   <div id="message"></div>
 
@@ -152,6 +161,8 @@ button {
 
   <button id="okBtn">Ok now 💞</button>
 </div>
+
+<img id="gifBottom" src="love2.gif">
 
 <div id="finalText"></div>
 
@@ -174,8 +185,10 @@ const noTexts = [
   "Ishte Ishte, bele ne illa 💔",
   "Ashteya, sumne yes oththu 💘"
 ];
+
 let noIndex = 0;
 let slideIndex = 1;
+let noActivated = false;
 
 /* Floating hearts */
 setInterval(() => {
@@ -193,6 +206,12 @@ setInterval(() => {
 noBtn.onclick = () => {
   message.innerText = noTexts[noIndex % noTexts.length];
   noIndex++;
+
+  if (!noActivated) {
+    noBtn.style.position = "absolute";
+    noActivated = true;
+  }
+
   noBtn.style.top = Math.random() * 70 + "vh";
   noBtn.style.left = Math.random() * 70 + "vw";
 };
