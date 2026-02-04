@@ -18,15 +18,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
-#container { width: 100%; padding: 20px; position: relative; }
+#container {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
 
 h1 {
   font-family: 'Great Vibes', cursive;
   font-size: 3.2rem;
-  margin-bottom: 30px;
+  margin: 20px 0;
   text-shadow: 0 0 20px #ff4d6d;
 }
 
@@ -56,24 +60,42 @@ button {
   100% { box-shadow: 0 0 5px #ff4d6d; }
 }
 
-.floatingGif {
-  position: absolute;
+/* Fixed GIFs */
+.fixedGif {
   width: 120px;
-  animation: floatGif 10s linear infinite;
 }
 
-@keyframes floatGif {
-  from { transform: translateY(100vh); }
-  to { transform: translateY(-20vh); }
+#gifTop {
+  margin-bottom: 10px;
+}
+
+#gifBottom {
+  margin-top: 10px;
 }
 
 #message {
-  margin-top: 25px;
+  margin-top: 20px;
   font-size: 1.3rem;
   font-family: 'Playfair Display', serif;
 }
 
-#slideshow { display: none; margin-top: 30px; }
+/* Floating hearts */
+.heart {
+  position: absolute;
+  color: #ff4d6d;
+  animation: floatHeart linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatHeart {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+
+#slideshow {
+  display: none;
+  margin-top: 30px;
+}
 
 #slideshow img {
   max-width: 90%;
@@ -109,7 +131,13 @@ button {
 <audio id="music" src="love.mp3" loop autoplay></audio>
 
 <div id="container">
+
+  <!-- Fixed GIFs -->
+  <img id="gifTop" class="fixedGif" src="love1.gif">
   <h1>Muddamma, will you be my Valentine? 💖</h1>
+  <img id="gifBottom" class="fixedGif" src="love2.gif">
+
+  <br><br>
 
   <button id="yesBtn">Yes 💘</button>
   <button id="noBtn">No 🙈</button>
@@ -134,32 +162,32 @@ const slideImg = document.getElementById("slideImg");
 const okBtn = document.getElementById("okBtn");
 const finalText = document.getElementById("finalText");
 const music = document.getElementById("music");
+const gifTop = document.getElementById("gifTop");
+const gifBottom = document.getElementById("gifBottom");
 
 const noTexts = [
   "Thagolappa NO anthe!! 😏",
   "Naanu muddu nim gowdru 🥺",
   "Bitbidthina sundari 😂",
   "Ishte Ishte, bele ne illa 💔",
-  "Ashteya, sumne yes othu 💘"
+  "Ashteya, sumne yes oththu 💘"
 ];
 let noIndex = 0;
 let slideIndex = 1;
 
-// Floating GIFs
-function createGif(src) {
-  const gif = document.createElement("img");
-  gif.src = src;
-  gif.className = "floatingGif";
-  gif.style.left = Math.random() * 80 + "vw";
-  gif.style.animationDuration = Math.random() * 5 + 6 + "s";
-  document.body.appendChild(gif);
-  return gif;
-}
+/* Floating hearts */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+  heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 400);
 
-const gif1 = createGif("love1.gif");
-const gif2 = createGif("love2.gif");
-
-// NO button logic
+/* NO button */
 noBtn.onclick = () => {
   message.innerText = noTexts[noIndex % noTexts.length];
   noIndex++;
@@ -167,20 +195,20 @@ noBtn.onclick = () => {
   noBtn.style.left = Math.random() * 70 + "vw";
 };
 
-// YES button
+/* YES button */
 yesBtn.onclick = () => {
   music.play();
   yesBtn.style.display = "none";
   noBtn.style.display = "none";
-  gif1.remove();
-  gif2.remove();
+  gifTop.remove();
+  gifBottom.remove();
 
   message.innerText = "Yayy, You are my Valentine today, tomorrow and forever 💖";
   startSlideshow();
   startConfetti();
 };
 
-// Slideshow
+/* Slideshow */
 function startSlideshow() {
   slideshow.style.display = "block";
   slideImg.src = "photo1.jpg";
@@ -196,7 +224,7 @@ function startSlideshow() {
   }, 2500);
 }
 
-// OK NOW
+/* OK NOW */
 okBtn.onclick = () => {
   okBtn.style.display = "none";
   slideImg.style.filter = "blur(5px)";
@@ -204,7 +232,7 @@ okBtn.onclick = () => {
   typeWriter("I LOVE YOU MUDDU HENDATHI ❤️");
 };
 
-// Typewriter
+/* Typewriter */
 function typeWriter(text) {
   finalText.style.display = "flex";
   let i = 0;
@@ -215,7 +243,7 @@ function typeWriter(text) {
   }, 120);
 }
 
-// Confetti
+/* Confetti */
 function startConfetti() {
   for (let i = 0; i < 140; i++) {
     const c = document.createElement("div");
@@ -226,7 +254,7 @@ function startConfetti() {
     c.style.top = Math.random() * 100 + "vh";
     c.style.left = Math.random() * 100 + "vw";
     c.style.opacity = Math.random();
-    c.style.animation = "floatGif 4s linear infinite";
+    c.style.animation = "floatHeart 4s linear infinite";
     document.body.appendChild(c);
     setTimeout(() => c.remove(), 6000);
   }
