@@ -1,342 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Muddamma ❤️</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Muddamma ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
 
-<style>
-html, body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at top, #111, #000);
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-  overflow: hidden;
-}
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top, #111, #000);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
 
-/* ---------- LAYERS ---------- */
-.layer-bg { z-index: 1; }
-.layer-visual { z-index: 3; pointer-events: none; }
-.layer-text { z-index: 10; }
-.layer-ui { z-index: 20; }
+    /* ---------- LAYERS ---------- */
+    .layer-bg { z-index: 1; }
+    .layer-visual { z-index: 3; pointer-events: none; position: relative; }
+    .layer-text { z-index: 10; position: relative; }
+    .layer-ui { z-index: 20; position: relative; }
 
-/* ---------- CENTER ---------- */
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vw;
-  max-width: 600px;
-  text-align: center;
-}
+    /* ---------- CENTER ---------- */
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90vw;
+      max-width: 600px;
+      text-align: center;
+    }
 
-/* ---------- TEXT ---------- */
-h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); }
-h2 { font-size: clamp(1.4rem, 5vw, 2rem); }
+    /* ---------- TEXT ---------- */
+    h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); }
+    h2 { font-size: clamp(1.4rem, 5vw, 2rem); }
 
-.glow {
-  color: #ff5fa2;
-  text-shadow: 0 0 10px #ff5fa2, 0 0 30px #ff5fa2;
-}
+    .glow {
+      color: #ff5fa2;
+      text-shadow: 0 0 10px #ff5fa2, 0 0 30px #ff5fa2;
+    }
 
-/* ---------- BUTTONS ---------- */
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 30px;
-}
+    /* ---------- BUTTONS ---------- */
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+    }
 
-button {
-  padding: 14px 34px;
-  font-size: 1.1rem;
-  border-radius: 40px;
-  border: none;
-  cursor: pointer;
-}
+    button {
+      padding: 14px 34px;
+      font-size: 1.1rem;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+    }
 
-#yesBtn {
-  background: #ff3b7f;
-  color: #fff;
-  animation: breathe 2s infinite;
-}
+    #yesBtn {
+      background: #ff3b7f;
+      color: #fff;
+      animation: breathe 2s infinite;
+    }
 
-#noBtn {
-  background: #444;
-  color: #fff;
-  position: relative;
-}
+    #noBtn {
+      background: #444;
+      color: #fff;
+      position: relative;
+    }
 
-@keyframes breathe {
-  0% { box-shadow: 0 0 10px #ff3b7f; }
-  50% { box-shadow: 0 0 25px #ff9fc7; }
-  100% { box-shadow: 0 0 10px #ff3b7f; }
-}
+    @keyframes breathe {
+      0% { box-shadow: 0 0 10px #ff3b7f; }
+      50% { box-shadow: 0 0 25px #ff9fc7; }
+      100% { box-shadow: 0 0 10px #ff3b7f; }
+    }
 
-/* ---------- HEARTS ---------- */
-.heart {
-  position: absolute;
-  font-size: 18px;
-  animation: floatUp linear infinite;
-  opacity: 0.7;
-}
+    /* ---------- HEARTS ---------- */
+    .heart {
+      position: absolute;
+      font-size: 18px;
+      animation: floatUp linear infinite;
+      opacity: 0.7;
+    }
 
-@keyframes floatUp {
-  from { transform: translateY(100vh); }
-  to { transform: translateY(-10vh); }
-}
+    @keyframes floatUp {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
 
-/* ---------- GIFS ---------- */
-#gifTop, #gifBottom {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
+    /* ---------- GIFS ---------- */
+    #gifTop, #gifBottom {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-#gifTop { top: 5%; width: 120px; }
-#gifBottom { bottom: 5%; width: 140px; }
+    #gifTop { top: 5%; width: 120px; }
+    #gifBottom { bottom: 5%; width: 140px; }
 
-/* ---------- SLIDESHOW ---------- */
-#slideshow {
-  display: none;
-  position: fixed;
-  inset: 0;
-}
+    /* ---------- SLIDESHOW ---------- */
+    #slideshow {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+    }
 
-#slideshow img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    #slideshow img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-/* ---------- CONFETTI ---------- */
-.confetti {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  animation: confettiFall linear infinite;
-}
+    /* ---------- CONFETTI ---------- */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      animation: confettiFall linear infinite;
+    }
 
-@keyframes confettiFall {
-  from { transform: translateY(-10vh) rotate(0deg); }
-  to { transform: translateY(110vh) rotate(720deg); }
-}
+    @keyframes confettiFall {
+      from { transform: translateY(-10vh) rotate(0deg); }
+      to { transform: translateY(110vh) rotate(720deg); }
+    }
 
-<!-- FINAL LOVE TEXT -->
-<div id="finalLove" style="
-  display:none;
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  width:90%;
-  text-align:center;
-  font-family:'Playfair Display', serif;
-  z-index:50;
-">
-  <div style="
-    font-size:clamp(1.6rem, 5vw, 2.4rem);
-    font-weight:600;
-    color:#fff;
-    text-shadow:0 0 12px rgba(255,80,150,0.8);
-  ">
-    I LOVE YOU<br>
-    MUDDU HENDATHI ❤️
-  </div>
+    /* ---------- FINAL LOVE TEXT ---------- */
+    #finalLove {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      z-index: 50;
+    }
 
-  <div style="
-    font-size:2rem;
-    margin-top:12px;
-    animation:heartbeat 1.4s infinite;
-  ">
-    ❤️
-  </div>
-</div>
+    #finalLoveMain {
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-weight: 600;
+      color: #fff;
+      text-shadow: 0 0 12px rgba(255,80,150,0.8);
+    }
 
-@keyframes heartbeat {
-  0% { transform: scale(1); }
-  25% { transform: scale(1.15); }
-  50% { transform: scale(1); }
-  75% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
+    #finalLoveHeart {
+      font-size: 2rem;
+      margin-top: 12px;
+      animation: heartbeat 1.4s infinite;
+    }
 
-#finalText {
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  font-size: clamp(1.6rem, 5vw, 2.4rem);
-  font-family: 'Playfair Display', serif;
-  text-align: center;
-  color: #fff;
-  text-shadow: 0 0 12px rgba(255,80,150,0.8);
-  z-index: 40;
-}
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.15); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
 
+    #finalText {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 0 12px rgba(255,80,150,0.8);
+      z-index: 40;
+      white-space: pre-wrap;
+    }
 
-#okBtn {
-  display: none;
-  position: fixed;
-  bottom: 8%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ff3b7f;
-  color: #fff;
-}
-</style>
+    #okBtn {
+      display: none;
+      position: fixed;
+      bottom: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff3b7f;
+      color: #fff;
+      z-index: 30;
+    }
+  </style>
 </head>
 
 <body>
 
-<audio id="music" src="love.mp3" loop></audio>
+  <audio id="music" src="love.mp3" loop></audio>
 
-<!-- VISUAL LAYER -->
-<div class="layer-visual">
-  <img id="gifTop" src="love1.gif">
-  <img id="gifBottom" src="love2.gif">
-</div>
-
-<!-- QUESTION -->
-<div class="center layer-ui" id="questionBox">
-  <h1>Muddamma, will you be my Valentine? 💖</h1>
-  <p id="funnyText"></p>
-
-  <div class="buttons">
-    <button id="yesBtn">YES</button>
-    <button id="noBtn">NO</button>
+  <!-- VISUAL LAYER -->
+  <div class="layer-visual">
+    <img id="gifTop" src="love1.gif" alt="">
+    <img id="gifBottom" src="love2.gif" alt="">
   </div>
-</div>
 
-<div id="yesText" class="glow layer-text" style="
-  display:none;
-  position:fixed;
-  top:5%;
-  width:100%;
-  text-align:center;
-  line-height:1.4;
-">
-  <div style="font-size:1.8em;">Yayy..!! 💖</div>
-  <div style="font-size:1.4em;">You are my Valentine</div>
-  <div style="font-size:1.2em; font-weight:700;">Then, Now and Forever ❤️</div>
-</div>
+  <!-- QUESTION -->
+  <div class="center layer-ui" id="questionBox">
+    <h1>Muddamma, will you be my Valentine? 💖</h1>
+    <p id="funnyText"></p>
 
+    <div class="buttons">
+      <button id="yesBtn">YES</button>
+      <button id="noBtn">NO</button>
+    </div>
+  </div>
 
-<div id="slideshow" class="layer-visual">
-  <img id="slideImg">
-</div>
+  <div id="yesText" class="glow layer-text" style="
+    display:none;
+    position:fixed;
+    top:5%;
+    width:100%;
+    text-align:center;
+    line-height:1.4;
+  ">
+    <div style="font-size:1.8em;">Yayy..!! 💖</div>
+    <div style="font-size:1.4em;">You are my Valentine</div>
+    <div style="font-size:1.2em; font-weight:700;">Then, Now and Forever ❤️</div>
+  </div>
 
-<button id="okBtn" class="layer-ui">Ok now</button>
-<div id="finalText" class="layer-text"></div>
+  <div id="slideshow" class="layer-visual">
+    <img id="slideImg" alt="">
+  </div>
 
-<script>
-/* MUSIC */
-const music = document.getElementById("music");
-let started = false;
-document.addEventListener("click", () => {
-  if (!started) {
-    music.play().catch(()=>{});
-    started = true;
-  }
-}, { once:true });
+  <button id="okBtn" class="layer-ui">Ok now</button>
 
-/* HEARTS */
-for (let i = 0; i < 25; i++) {
-  const h = document.createElement("div");
-  h.className = "heart layer-visual";
-  h.innerHTML = "❤️";
-  h.style.left = Math.random()*100 + "vw";
-  h.style.animationDuration = 6 + Math.random()*6 + "s";
-  document.body.appendChild(h);
-}
+  <div id="finalText" class="layer-text"></div>
 
-/* CONFETTI */
-let confettiTimer;
-function startConfetti() {
-  confettiTimer = setInterval(() => {
-    const c = document.createElement("div");
-    c.className = "confetti layer-visual";
-    c.style.left = Math.random()*100 + "vw";
-    c.style.background = ["orange","green","yellow","white"][Math.floor(Math.random()*4)];
-    c.style.animationDuration = 3 + Math.random()*3 + "s";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),6000);
-  }, 120);
-}
-function stopConfetti() {
-  clearInterval(confettiTimer);
-}
+  <div id="finalLove">
+    <div id="finalLoveMain">
+      I LOVE YOU<br>
+      MUDDU HENDATHI ❤️
+    </div>
+    <div id="finalLoveHeart">❤️</div>
+  </div>
 
-/* NO BUTTON */
-const funny = [
-  "Thagolappa NO anthe!! 😏",
-  "Naanu muddu nim gowdru 🥺",
-  "Bitbidthina sundari 😂",
-  "Ishte Ishte, bele ne illa 💔",
-  "Ashteya, sumne yes oththu 💘"
-];
+  <script>
+    /* MUSIC */
+    const music = document.getElementById("music");
+    let started = false;
+    document.addEventListener("click", () => {
+      if (!started) {
+        music.play().catch(()=>{});
+        started = true;
+      }
+    }, { once:true });
 
-document.getElementById("noBtn").onclick = () => {
-  document.getElementById("funnyText").innerText =
-    funny[Math.floor(Math.random()*funny.length)];
-  document.getElementById("noBtn").style.transform =
-    `translate(${Math.random()*160-80}px,${Math.random()*160-80}px)`;
-};
-
-/* YES FLOW */
-const photos = Array.from({length:10}, (_,i)=>`photo${i+1}.jpg`);
-let idx = 0;
-
-document.getElementById("yesBtn").onclick = () => {
-  document.getElementById("questionBox").style.display = "none";
-  document.getElementById("gifTop").style.display = "none";
-  document.getElementById("gifBottom").style.display = "none";
-  document.getElementById("yesText").style.display = "block";
-
-  startConfetti();
-
-  const show = document.getElementById("slideshow");
-  const img = document.getElementById("slideImg");
-  show.style.display = "block";
-  img.src = photos[0];
-
-  const timer = setInterval(()=>{
-    idx++;
-    if (idx < photos.length) img.src = photos[idx];
-    else {
-      clearInterval(timer);
-      document.getElementById("okBtn").style.display = "block";
+    /* HEARTS */
+    for (let i = 0; i < 25; i++) {
+      const h = document.createElement("div");
+      h.className = "heart layer-visual";
+      h.innerHTML = "❤️";
+      h.style.left = Math.random()*100 + "vw";
+      h.style.animationDuration = 6 + Math.random()*6 + "s";
+      document.body.appendChild(h);
     }
-  }, 2500);
-};
 
-/* OK NOW */
-document.getElementById("okBtn").onclick = function() {
-  stopConfetti();
-  this.disabled = true;
+    /* CONFETTI */
+    let confettiTimer;
+    function startConfetti() {
+      confettiTimer = setInterval(() => {
+        const c = document.createElement("div");
+        c.className = "confetti layer-visual";
+        c.style.left = Math.random()*100 + "vw";
+        c.style.background = ["orange","green","yellow","white"][Math.floor(Math.random()*4)];
+        c.style.animationDuration = 3 + Math.random()*3 + "s";
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),6000);
+      }, 120);
+    }
+    function stopConfetti() {
+      clearInterval(confettiTimer);
+    }
 
-  const img = document.getElementById("slideImg");
-  img.style.transition = "transform 6s, filter 6s";
-  img.style.transform = "scale(1.2)";
-  img.style.filter = "blur(6px)";
+    /* NO BUTTON */
+    const funny = [
+      "Thagolappa NO anthe!! 😏",
+      "Naanu muddu nim gowdru 🥺",
+      "Bitbidthina sundari 😂",
+      "Ishte Ishte, bele ne illa 💔",
+      "Ashteya, sumne yes oththu 💘"
+    ];
 
-  const text = document.getElementById("finalText");
-  text.style.display = "flex";
-  const msg = "I   LOVE   YOU   MUDDU    HENDATHI  ❤️";
-  let i = 0;
-  const t = setInterval(()=>{
-    text.innerText += msg[i++];
-    if (i === msg.length) clearInterval(t);
-  }, 120);
-};
-</script>
+    document.getElementById("noBtn").onclick = () => {
+      document.getElementById("funnyText").innerText =
+        funny[Math.floor(Math.random()*funny.length)];
+      document.getElementById("noBtn").style.transform =
+        `translate(${Math.random()*160-80}px,${Math.random()*160-80}px)`;
+    };
+
+    /* YES FLOW */
+    const photos = Array.from({length:10}, (_,i)=>`photo${i+1}.jpg`);
+    let idx = 0;
+
+    document.getElementById("yesBtn").onclick = () => {
+      document.getElementById("questionBox").style.display = "none";
+      document.getElementById("gifTop").style.display = "none";
+      document.getElementById("gifBottom").style.display = "none";
+      document.getElementById("yesText").style.display = "block";
+
+      startConfetti();
+
+      const show = document.getElementById("slideshow");
+      const img = document.getElementById("slideImg");
+      show.style.display = "block";
+      img.src = photos[0];
+
+      const timer = setInterval(()=>{
+        idx++;
+        if (idx < photos.length) img.src = photos[idx];
+        else {
+          clearInterval(timer);
+          document.getElementById("okBtn").style.display = "block";
+        }
+      }, 2500);
+    };
+
+    /* OK NOW */
+    document.getElementById("okBtn").onclick = function() {
+      stopConfetti();
+      this.disabled = true;
+
+      const img = document.getElementById("slideImg");
+      img.style.transition = "transform 6s, filter 6s";
+      img.style.transform = "scale(1.2)";
+      img.style.filter = "blur(6px)";
+
+      const text = document.getElementById("finalText");
+      text.style.display = "flex";
+      const msg = "I   LOVE   YOU   MUDDU    HENDATHI  ❤️";
+      let i = 0;
+      text.innerText = "";
+      const t = setInterval(()=>{
+        text.innerText += msg[i++];
+        if (i === msg.length) {
+          clearInterval(t);
+          // show the big final love block if you want
+          document.getElementById("finalLove").style.display = "block";
+        }
+      }, 120);
+    };
+  </script>
 
 </body>
 </html>
