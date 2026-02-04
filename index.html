@@ -95,12 +95,11 @@
 
     /* ---------- GIFS ---------- */
     #gifTop {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+      display: block;
+      margin: 0 auto 15px auto; /* Centers it and adds space below */
+      width: 120px;
+      position: relative; /* Removes the absolute floating */
     }
-
-    #gifTop { top: 50%; width: 120px; }
 
     /* ---------- SLIDESHOW ---------- */
     #slideshow {
@@ -229,6 +228,8 @@
 
   <!-- QUESTION -->
   <div class="center layer-ui" id="questionBox">
+    <img id="gifTop" src="love2.gif" alt="" style="position: static; transform: none; margin-bottom: 20px;">
+    
     <h1>Muddamma, will you be my Valentine? 💖</h1>
     <p id="funnyText"></p>
 
