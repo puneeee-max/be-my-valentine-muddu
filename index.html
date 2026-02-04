@@ -3,253 +3,284 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Muddamma ❤️</title>
+<title>For Muddamma 💖</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
 body {
-    margin: 0;
-    height: 100vh;
-    background: radial-gradient(circle at top, #1a1a1a, #050505);
-    font-family: 'Montserrat', sans-serif;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
+  height: 100vh;
+  background: radial-gradient(circle at top, #1a1a1a, #000);
+  overflow: hidden;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Floating hearts */
+body::before {
+  content: "💖 💕 💘 💗 ❤️ 💓";
+  position: fixed;
+  inset: 0;
+  font-size: 2.2rem;
+  opacity: 0.25;
+  animation: floatHearts 20s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes floatHearts {
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-100vh); }
 }
 
 .container {
-    width: 94%;
-    max-width: 440px;
-    padding: 32px 22px;
-    border-radius: 28px;
-    background: linear-gradient(145deg, #0b0b0b, #141414);
-    box-shadow: 0 0 40px rgba(255,79,154,0.25),
-                inset 0 0 25px rgba(255,255,255,0.03);
-    text-align: center;
-    position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
 }
 
-.glow-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: #ff4f9a;
-    text-shadow: 0 0 12px #ff4f9a, 0 0 30px #ff1f7a;
-    animation: heartbeat 2s infinite;
+.glow {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.5rem;
+  color: #ff4dd2;
+  text-shadow: 0 0 25px #ff4dd2;
 }
 
-@keyframes heartbeat {
-    0% { transform: scale(1); }
-    30% { transform: scale(1.05); }
-    60% { transform: scale(1); }
+.question {
+  font-size: 1.6rem;
 }
 
-.buttons {
-    margin-top: 30px;
-    height: 80px;
-    position: relative;
+.buttons-area {
+  position: relative;
+  width: 320px;
+  height: 160px;
 }
 
 button {
-    padding: 14px 26px;
-    font-size: 1.1rem;
-    border-radius: 30px;
-    border: none;
-    background: #111;
-    color: white;
-    cursor: pointer;
-    position: absolute;
+  padding: 14px 32px;
+  border-radius: 30px;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  position: absolute;
 }
 
 #yesBtn {
-    left: 30%;
-    animation: breathe 2.2s infinite ease-in-out;
-    box-shadow: 0 0 15px #ff4f9a;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff0077;
+  color: white;
+  box-shadow: 0 0 25px #ff0077;
+  animation: breathe 2s infinite;
 }
 
 @keyframes breathe {
-    0% { transform: scale(1); box-shadow: 0 0 12px #ff4f9a; }
-    50% { transform: scale(1.08); box-shadow: 0 0 30px #ff1f7a; }
-    100% { transform: scale(1); box-shadow: 0 0 12px #ff4f9a; }
+  0% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.12); }
+  100% { transform: translateX(-50%) scale(1); }
 }
 
 #noBtn {
-    right: 30%;
+  top: 0;
+  left: 20px;
+  background: #444;
+  color: white;
 }
 
+.hidden {
+  display: none;
+}
+
+/* Valentine message after YES */
+#valentineMsg {
+  position: fixed;
+  top: 15%;
+  width: 100%;
+  text-align: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.4rem;
+  color: #fff;
+  text-shadow: 0 0 25px #ffb703;
+  z-index: 10;
+}
+
+/* Slideshow */
 .slideshow {
-    display: none;
-    margin-top: 25px;
-    position: relative;
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .slideshow img {
-    width: 85%;
-    max-width: 320px;
-    border-radius: 18px;
-    transition: opacity 1s ease-in-out, filter 1s ease;
+  max-width: 90%;
+  max-height: 90%;
+  transition: transform 6s ease, filter 6s ease;
 }
 
-#finalBtn {
-    display: none;
-    margin-top: 25px;
-    padding: 14px 28px;
-    border-radius: 30px;
-    font-size: 1.1rem;
-    background: #111;
-    color: #ff4f9a;
-    box-shadow: 0 0 20px #ff4f9a;
-    border: none;
+/* OK NOW button */
+#okNow {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff0077;
+  color: white;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  box-shadow: 0 0 20px #ff0077;
 }
 
-@keyframes slowZoom {
-    from { transform: scale(1); filter: blur(0); }
-    to { transform: scale(1.25); filter: blur(6px); }
-}
-
-.love-text-final {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: #ff4f9a;
-    text-align: center;
-    text-shadow: 0 0 30px #ff1f7a;
-    padding: 20px;
-}
-
-.confetti {
-    position: fixed;
-    width: 8px;
-    height: 14px;
-    top: -10px;
-    animation: fall 3.5s linear forwards;
-    z-index: 9999;
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(110vh) rotate(720deg);
-        opacity: 0;
-    }
+/* Final text */
+#finalText {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  color: #ff4dd2;
+  text-shadow: 0 0 30px #ff4dd2;
+  pointer-events: none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="captureArea">
-    <h1 class="glow-text">
-        Will you be my Valentine,<br>Muddamma? 💕
-    </h1>
+<audio id="bgMusic" src="music.mp3" autoplay loop></audio>
 
-    <div class="buttons">
-        <button id="yesBtn">YES ❤️</button>
-        <button id="noBtn">NO 🙃</button>
-    </div>
+<div class="container">
+  <h1 class="glow">Muddamma 💕</h1>
+  <h2 class="question">Will you be my Valentine?</h2>
 
-    <div class="slideshow" id="slideshow">
-        <img id="slide" src="photos/photo1.jpg">
-        <button id="finalBtn">ok now ❤️</button>
-    </div>
+  <div class="buttons-area">
+    <button id="yesBtn">YES 💖</button>
+    <button id="noBtn">NO 😜</button>
+  </div>
 </div>
 
-<audio id="bgMusic" loop>
-    <source src="love.mp3" type="audio/mpeg">
-</audio>
+<div id="valentineMsg" class="hidden">
+  Yayy, You are my Valentine today, tomorrow and forever
+</div>
+
+<div class="slideshow hidden">
+  <img id="slideImg" src="photo1.jpg">
+</div>
+
+<button id="okNow" class="hidden">OK NOW 💫</button>
+<div id="finalText"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
-// MUSIC ON FIRST TOUCH
-const music = document.getElementById("bgMusic");
-document.addEventListener("touchstart", () => {
-    if (music.paused) {
-        music.volume = 0.6;
-        music.play().catch(()=>{});
-    }
-}, { once: true });
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const slideshow = document.querySelector(".slideshow");
+const slideImg = document.getElementById("slideImg");
+const okNow = document.getElementById("okNow");
+const finalText = document.getElementById("finalText");
+const valentineMsg = document.getElementById("valentineMsg");
 
-// CONFETTI
-function confettiBurst() {
-    for (let i = 0; i < 120; i++) {
-        const c = document.createElement("div");
-        c.className = "confetti";
-        c.style.left = Math.random()*100 + "vw";
-        c.style.background = ["#ff4f9a","#ff1f7a","#fff","#ffccd5"][Math.floor(Math.random()*4)];
-        document.body.appendChild(c);
-        setTimeout(()=>c.remove(),4000);
-    }
+const funnyNos = [
+  "Are you sure? 😏",
+  "Think again 😜",
+  "Wrong answer 😂",
+  "Nice try 😎",
+  "No is illegal 💕"
+];
+
+const photos = Array.from({length:10}, (_,i)=>`photo${i+1}.jpg`);
+let index = 0;
+let confettiInterval;
+
+/* NO button movement */
+function moveNo() {
+  const area = document.querySelector(".buttons-area");
+  const maxX = area.clientWidth - 100;
+  const maxY = area.clientHeight - 60;
+
+  let x, y;
+  do {
+    x = Math.random() * maxX;
+    y = Math.random() * maxY;
+  } while (y > 80);
+
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+  noBtn.textContent = funnyNos[Math.floor(Math.random() * funnyNos.length)];
 }
 
-// NO BUTTON FUN
-const noBtn = document.getElementById("noBtn");
-const noTexts = ["Ishtena? 😏","Ahahaha howda 😜","Nanage, nanage NO na? 🥺","Aaythu bidamma naavu yake beku ivaga 😈"];
-noBtn.addEventListener("touchstart", () => {
-    noBtn.innerText = noTexts[Math.floor(Math.random()*noTexts.length)];
-    noBtn.style.left = Math.random()*60 + "%";
-    noBtn.style.top = Math.random()*60 + "%";
-});
+noBtn.addEventListener("touchstart", moveNo);
+noBtn.addEventListener("mouseover", moveNo);
 
-// SLIDESHOW
-const yesBtn = document.getElementById("yesBtn");
-const slideshow = document.getElementById("slideshow");
-const slide = document.getElementById("slide");
-const finalBtn = document.getElementById("finalBtn");
-
-const photos = Array.from({length:10},(_,i)=>`photos/photo${i+1}.jpg`);
-let idx = 0, cycles = 0;
-
+/* YES logic */
 yesBtn.addEventListener("click", () => {
-    document.querySelector(".buttons").style.display = "none";
-    slideshow.style.display = "block";
-    confettiBurst();
-
-    const interval = setInterval(() => {
-        slide.style.opacity = 0;
-        setTimeout(() => {
-            idx++;
-            if (idx >= photos.length) { idx = 0; cycles++; }
-            slide.src = photos[idx];
-            slide.style.opacity = 1;
-            if (cycles === 1) {
-                clearInterval(interval);
-                finalBtn.style.display = "inline-block";
-            }
-        }, 1000);
-    }, 3500);
+  document.querySelector(".container").classList.add("hidden");
+  valentineMsg.classList.remove("hidden");
+  slideshow.classList.remove("hidden");
+  startConfetti();
+  startSlideshow();
 });
 
-// FINAL TYPEWRITER + SCREENSHOT
-finalBtn.addEventListener("click", async () => {
-    slide.style.animation = "slowZoom 6s forwards";
+/* Continuous confetti */
+function startConfetti() {
+  confettiInterval = setInterval(() => {
+    confetti({
+      particleCount: 40,
+      spread: 360,
+      origin: { x: Math.random(), y: Math.random() },
+      colors: ['#ff9f1c', '#2ec4b6', '#ffeb3b', '#ffffff']
+    });
+  }, 300);
+}
 
-    const text = document.createElement("div");
-    text.className = "love-text-final";
-    document.getElementById("captureArea").appendChild(text);
+/* Slideshow */
+function startSlideshow() {
+  slideImg.src = photos[index];
+  index++;
+  if (index < photos.length) {
+    setTimeout(startSlideshow, 2000);
+  } else {
+    clearInterval(confettiInterval);
+    setTimeout(() => okNow.classList.remove("hidden"), 2000);
+  }
+}
 
-    const message = "I LOVE YOU\nMUDDU HENDATHI ❤️";
-    let i = 0;
-
-    const typer = setInterval(() => {
-        text.innerHTML = message.slice(0, i++).replace("\n","<br>");
-        if (i > message.length) {
-            clearInterval(typer);
-
-            setTimeout(async () => {
-                const canvas = await html2canvas(document.getElementById("captureArea"));
-                const link = document.createElement("a");
-                link.download = "forever_with_muddu.png";
-                link.href = canvas.toDataURL();
-                link.click();
-            }, 1500);
-        }
-    }, 120);
+/* OK NOW */
+okNow.addEventListener("click", () => {
+  slideImg.style.transform = "scale(1.25)";
+  slideImg.style.filter = "blur(6px)";
+  okNow.classList.add("hidden");
+  valentineMsg.classList.add("hidden");
+  typeWriter("I LOVE YOU MUDDU HENDATHI");
 });
+
+/* Typewriter */
+function typeWriter(text) {
+  let i = 0;
+  finalText.textContent = "";
+  const timer = setInterval(() => {
+    finalText.textContent += text.charAt(i);
+    i++;
+    if (i === text.length) clearInterval(timer);
+  }, 120);
+}
 </script>
 
 </body>
