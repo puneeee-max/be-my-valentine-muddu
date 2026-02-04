@@ -9,15 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
 
 <style>
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
   background: radial-gradient(circle at top, #111, #000);
   color: #fff;
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
 }
 
-/* Center container */
+/* CENTER */
 .center {
   position: absolute;
   top: 50%;
@@ -26,23 +29,19 @@ body {
   width: 90vw;
   max-width: 600px;
   text-align: center;
+  z-index: 5;
 }
 
-/* Text */
-h1 {
-  font-size: clamp(1.8rem, 6vw, 2.6rem);
-}
-
-h2 {
-  font-size: clamp(1.4rem, 5vw, 2rem);
-}
+/* TEXT */
+h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); }
+h2 { font-size: clamp(1.4rem, 5vw, 2rem); }
 
 .glow {
   color: #ff5fa2;
   text-shadow: 0 0 10px #ff5fa2, 0 0 30px #ff5fa2;
 }
 
-/* Buttons */
+/* BUTTONS */
 .buttons {
   display: flex;
   justify-content: center;
@@ -51,66 +50,64 @@ h2 {
 }
 
 button {
-  padding: 14px 30px;
+  padding: 14px 32px;
   font-size: 1.1rem;
-  border: none;
   border-radius: 40px;
+  border: none;
   cursor: pointer;
 }
 
 #yesBtn {
   background: #ff3b7f;
-  color: #fff;
+  color: white;
   animation: breathe 2s infinite;
 }
 
 #noBtn {
   background: #444;
-  color: #fff;
+  color: white;
   position: relative;
 }
 
 @keyframes breathe {
   0% { box-shadow: 0 0 10px #ff3b7f; }
-  50% { box-shadow: 0 0 25px #ff8fbf; }
+  50% { box-shadow: 0 0 25px #ff9fc7; }
   100% { box-shadow: 0 0 10px #ff3b7f; }
 }
 
-/* Floating hearts */
+/* FLOATING HEARTS */
 .heart {
   position: absolute;
-  color: #ff5fa2;
-  animation: float 8s linear infinite;
+  font-size: 18px;
+  animation: floatUp linear infinite;
   opacity: 0.7;
+  pointer-events: none;
 }
 
-@keyframes float {
+@keyframes floatUp {
   from { transform: translateY(100vh); }
   to { transform: translateY(-10vh); }
 }
 
-/* GIFs */
-#gifTop {
+/* GIFS */
+#gifTop, #gifBottom {
   position: absolute;
-  top: 5%;
   left: 50%;
   transform: translateX(-50%);
-  width: 120px;
+  pointer-events: none;
+  z-index: 2;
 }
 
-#gifBottom {
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 140px;
-}
+#gifTop { top: 5%; width: 120px; }
+#gifBottom { bottom: 5%; width: 140px; }
 
-/* Slideshow */
+/* SLIDESHOW */
 #slideshow {
   display: none;
   position: absolute;
   inset: 0;
+  background: #000;
+  z-index: 1;
 }
 
 #slideshow img {
@@ -119,7 +116,20 @@ button {
   object-fit: cover;
 }
 
-/* Final text */
+/* CONFETTI */
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  animation: confettiFall linear infinite;
+}
+
+@keyframes confettiFall {
+  from { transform: translateY(-10vh) rotate(0deg); }
+  to { transform: translateY(110vh) rotate(720deg); }
+}
+
+/* FINAL */
 #finalText {
   display: none;
   font-family: 'Orbitron', sans-serif;
@@ -130,10 +140,9 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 5;
+  z-index: 6;
 }
 
-/* Ok now */
 #okBtn {
   display: none;
   position: absolute;
@@ -141,7 +150,8 @@ button {
   left: 50%;
   transform: translateX(-50%);
   background: #ff3b7f;
-  color: #fff;
+  color: white;
+  z-index: 6;
 }
 </style>
 </head>
@@ -163,7 +173,7 @@ button {
   </div>
 </div>
 
-<h2 id="yesText" class="glow" style="display:none;position:absolute;top:5%;width:100%;text-align:center;">
+<h2 id="yesText" class="glow" style="display:none;position:absolute;top:5%;width:100%;text-align:center;z-index:5;">
   Yayy, you are my Valentine today, tomorrow and forever 💞
 </h2>
 
@@ -172,11 +182,10 @@ button {
 </div>
 
 <button id="okBtn">Ok now</button>
-
 <div id="finalText"></div>
 
 <script>
-/* Music on first tap */
+/* MUSIC ON FIRST TAP */
 const music = document.getElementById("music");
 let musicStarted = false;
 function startMusic() {
@@ -188,17 +197,35 @@ function startMusic() {
 document.addEventListener("click", startMusic, { once:true });
 document.addEventListener("touchstart", startMusic, { once:true });
 
-/* Floating hearts */
-for (let i = 0; i < 20; i++) {
+/* HEARTS */
+for (let i = 0; i < 25; i++) {
   const h = document.createElement("div");
   h.className = "heart";
   h.innerHTML = "❤️";
-  h.style.left = Math.random() * 100 + "vw";
-  h.style.animationDuration = 6 + Math.random() * 6 + "s";
+  h.style.left = Math.random()*100 + "vw";
+  h.style.animationDuration = 6 + Math.random()*6 + "s";
   document.body.appendChild(h);
 }
 
-/* NO button funny texts */
+/* CONFETTI */
+let confettiInterval;
+function startConfetti() {
+  confettiInterval = setInterval(()=>{
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random()*100 + "vw";
+    c.style.background =
+      ["orange","green","yellow","white"][Math.floor(Math.random()*4)];
+    c.style.animationDuration = 3 + Math.random()*3 + "s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),6000);
+  }, 100);
+}
+function stopConfetti() {
+  clearInterval(confettiInterval);
+}
+
+/* NO BUTTON FUN */
 const funny = [
   "Thagolappa NO anthe!! 😏",
   "Naanu muddu nim gowdru 🥺",
@@ -210,15 +237,15 @@ const funny = [
 let noCount = 0;
 const noBtn = document.getElementById("noBtn");
 noBtn.onclick = () => {
-  document.getElementById("funnyText").innerText = funny[noCount % funny.length];
-  noCount++;
+  document.getElementById("funnyText").innerText =
+    funny[Math.floor(Math.random()*funny.length)];
   noBtn.style.transform =
-    `translate(${Math.random()*200-100}px, ${Math.random()*200-100}px)`;
+    `translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
 };
 
-/* YES flow */
+/* YES FLOW */
 const photos = Array.from({length:10}, (_,i)=>`photo${i+1}.jpg`);
-let index = 0, slideTimer;
+let idx = 0;
 
 document.getElementById("yesBtn").onclick = () => {
   document.getElementById("questionBox").style.display = "none";
@@ -226,17 +253,18 @@ document.getElementById("yesBtn").onclick = () => {
   document.getElementById("gifBottom").style.display = "none";
   document.getElementById("yesText").style.display = "block";
 
-  const slideshow = document.getElementById("slideshow");
-  const img = document.getElementById("slideImg");
-  slideshow.style.display = "block";
+  startConfetti();
 
+  const show = document.getElementById("slideshow");
+  const img = document.getElementById("slideImg");
+  show.style.display = "block";
   img.src = photos[0];
-  slideTimer = setInterval(()=>{
-    index++;
-    if(index < photos.length) {
-      img.src = photos[index];
-    } else {
-      clearInterval(slideTimer);
+
+  const timer = setInterval(()=>{
+    idx++;
+    if(idx < photos.length) img.src = photos[idx];
+    else {
+      clearInterval(timer);
       document.getElementById("okBtn").style.display = "block";
     }
   }, 2500);
@@ -244,7 +272,9 @@ document.getElementById("yesBtn").onclick = () => {
 
 /* OK NOW */
 document.getElementById("okBtn").onclick = function() {
+  stopConfetti();
   this.disabled = true;
+
   const img = document.getElementById("slideImg");
   img.style.transition = "transform 6s, filter 6s";
   img.style.transform = "scale(1.2)";
@@ -255,8 +285,7 @@ document.getElementById("okBtn").onclick = function() {
   const msg = "I LOVE YOU MUDDU HENDATHI";
   let i = 0;
   const typer = setInterval(()=>{
-    text.innerText += msg[i];
-    i++;
+    text.innerText += msg[i++];
     if(i === msg.length) clearInterval(typer);
   }, 120);
 };
