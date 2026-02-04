@@ -1,7 +1,7 @@
-<div class="glass-card">
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Be My Valentine ❤️</title>
@@ -18,19 +18,26 @@ body {
     overflow: hidden;
     color: #f5f5f5;
 }
+    
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.glow-text {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+}
 
 .glass-card {
     position: relative;
-    width: 92%;
-    max-width: 420px;
-    padding: 30px 20px;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    width: 94%;
+    max-width: 440px;
+    padding: 32px 22px;
+    border-radius: 28px;
+    background: linear-gradient(145deg, #0b0b0b, #141414);
     box-shadow:
-        0 0 30px rgba(255, 79, 154, 0.25),
-        inset 0 0 20px rgba(255,255,255,0.05);
+        0 0 40px rgba(255, 79, 154, 0.25),
+        inset 0 0 25px rgba(255, 255, 255, 0.03);
     text-align: center;
 }
 
@@ -130,6 +137,10 @@ button {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+#yesBtn {
+    animation: breathe 2.2s infinite ease-in-out;
+}
+
 #yesBtn:hover {
     transform: scale(1.1);
     box-shadow:
@@ -143,6 +154,22 @@ button {
     opacity: 0.8;
 }
 
+@keyframes breathe {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(255, 79, 154, 0.4);
+    }
+    50% {
+        transform: scale(1.07);
+        box-shadow: 0 0 30px rgba(255, 79, 154, 0.9);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(255, 79, 154, 0.4);
+    }
+}
+
+    
 @keyframes heartbeat {
     0% { transform: scale(1); text-shadow: 0 0 10px #ff4f9a; }
     25% { transform: scale(1.04); text-shadow: 0 0 30px #ff1f7a; }
@@ -233,11 +260,11 @@ const photos = ["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg"
 let photoIndex = 0;
 
 const noTexts = [
-  "Are you sure? 🤨",
-  "Think again, Muddamma 🥺",
-  "My heart is cracking 💔",
-  "Last chance 😭",
-  "Okay okay… I know it’s YES 😌"
+  "Aahahaa ishtena? 🤨",
+  "Muddamma nanige NO na??🥺",
+  "Ishte Ishte 💔",
+  "Aaythu bidamma, naavyake beku ivaga!! 😭",
+  "Sundari nanige gothu 😌"
 ];
 let noCount = 0;
 
